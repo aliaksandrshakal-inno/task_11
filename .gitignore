@@ -1,0 +1,16 @@
+# dbt
+target/
+dbt_modules/
+dbt_packages/
+logs/
+profiles.yml
+
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
+
+# Airflow
+standalone_admin_password.txt
+airflow.cfg
