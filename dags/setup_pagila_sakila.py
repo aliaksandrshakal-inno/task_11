@@ -85,8 +85,14 @@ def setup_db_dag():
         python_callable=trigger_airbyte_via_connection,
     )
 
+    run_dbt_transformations = BashOperator(
+        task_id='run_dbt_transformations',
+        bash_command='cd /opt/airflow/pagila_analytics && dbt run'
+    )
+
 
     pagila_schema >> pagila_data >> trigger_airbyte_sync
     sakila_schema >> sakila_data >> trigger_airbyte_sync
+    trigger_airbyte_sync >> run_dbt_transformations
 
 setup_db_dag()
