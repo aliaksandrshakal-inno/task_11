@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: pagila_raw
+    database: AIRBYTE_DATABASE
+    schema: pagila
+    # Поле, по которому dbt будет проверять, когда данные обновлялись в последний раз
+    loaded_at_field: _airbyte_extracted_at 
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+    tables:
+      - name: film
+      - name: actor
+      - name: category
+      - name: rental
+      - name: customer
+      - name: inventory
+      - name: payment
+      - name: address
+      - name: city
+      - name: film_category
+      - name: film_actor
